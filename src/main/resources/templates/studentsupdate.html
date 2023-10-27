@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+
+<head>
+
+	<meta charset="UTF-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>My HTML Page</title>
+
+	<link href="../css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+
+<body>
+
+	<form th:action="@{update}" method="post">
+
+		<table>
+
+			<tr>
+
+				<td><label for="id">ID</label></td>
+
+				<td><input type="number" th:field="${student.id}" /></td>
+
+			</tr>
+
+			<tr>
+
+				<td><label for="name">Name</label></td>
+
+				<td><input type="text" th:field="${student.name}" /></td>
+
+			</tr>
+
+			<tr>
+
+				<td><label for="gender">Gender</label></td>
+
+				<td><input type="text" th:field="${student.gender}" /></td>
+
+			</tr>
+
+			<tr>
+
+				<td><input type="submit" value="Update" /></td>
+
+			</tr>
+
+		</table>
+
+	</form>
+
+	<script src="../js/bootstrap.bundle.min.js"></script>
+
+	<script src="../js/jquery-3.6.0.min.js"></script>
+
+	<script src="../js/sweetalert.min.js"></script>
+
+	<script src="../js/students.js"></script>
+
+
+
+</body>
+
+
+
+</html>

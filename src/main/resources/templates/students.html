@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>My HTML Page</title>
+	<link href="../CSS/boostrap.css" rel="stylesheet"
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+<body>
+	<script src="../JS/tableau.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
+	<hr>
+	<form th:action="@{save}" method="post">
+		<table>
+			<tr>
+				<td><label text="id"> id</label></td>
+				<td><input type="number" name="id" /></td>
+			</tr>
+			<tr>
+				<td><label text="name"> name</label></td>
+				<td><input type="text" name="name" /></td>
+			</tr>
+			<tr>
+				<td><label text="gender"> Gender</label></td>
+				<td><input type="text" name="gender" /></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="Update" /></td>
+			</tr>
+		</table>
+	</form>
+	</hr>
+	<table class="table table-striped">
+
+		<tr>
+			<th>id</th>
+			<th>name</th>
+			<th>Gender</th>
+			<th>Delete</th>
+			<th>Delete-Ajax</th>
+			<th>Consulter</th>
+		</tr>
+		<tr th:each="student, rowStat : ${students}" th:class="${rowStat.odd} ? 'odd' : 'even'"
+			th:attr="data-student-id=${student.id}">
+			<td th:text="${student.id}" />
+			<td th:text="${student.name}" />
+			<td class="student-gender" th:text="${student.gender == 'M' ? 'Male' : 'Female'}" />
+			<td>
+				<a th:href="'/students/delete/' + ${student.id}">Delete</a>
+			</td>
+			<td>
+				<a th:href="'javascript:DeleteStudent(' + ${student.id} + ')'">Delete-Ajax</a>
+			</td>
+			<td>
+				<a th:href="'/students/edit?id=' + ${student.id}">edit</a>
+			</td>
+		</tr>
+		</tr>
+	</table>
+	<script src="../JS/jquery-3.6.0.min.js"></script>
+	<script src="../JS/sweetalert.min.js"></script>
+	<script src="../JS/student.js"></script>
+</body>
+
+</html>
