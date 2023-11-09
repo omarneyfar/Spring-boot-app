@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <title>Gestion des Comptes</title>
+</head>
+<body>
+<div class="container">
+    <h1 class="my-4">Édition de Compte</h1>
+
+    <form th:action="@{/comptes/update/{rib}(rib=${compte.rib})}" method="POST">
+        <div class="mb-3">
+            <label for="nomClient" class="form-label">Client</label>
+            <input type="text" id="nomClient" name="nomClient" th:value="${compte.nomClient}" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label for="solde" class="form-label">Solde</label>
+            <input type="text" id="solde" name="solde" th:value="${compte.solde}" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-success">Enregistrer les modifications</button>
+        <a th:href="@{/comptes}" class="btn btn-secondary">Annuler</a>
+    </form>
+</div>
+
+<script src="../js/bundle.min.js"></script>
+<script src="../js/student.js"></script>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script src="../js/sweetalert.min.js"></script>
+</body>
+</html>

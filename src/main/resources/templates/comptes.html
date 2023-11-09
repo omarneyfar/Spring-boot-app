@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <title>Gestion des Comptes</title>
+</head>
+<body>
+<h1>Gestion des Comptes</h1>
+
+<!-- Section pour ajouter un compte -->
+<div id="add-section">
+    <h2>Ajouter un Compte</h2>
+    <form th:action="@{/comptes/save}" method="POST">
+        <table>
+            <tr>
+                <td>Client</td>
+                <td><input type="text" name="nomClient" /></td>
+            </tr>
+            <tr>
+                <td>Solde</td>
+                <td><input type="text" name="solde" /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Enregistrer" class="btn btn-primary" /></td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<!-- Section pour afficher la liste des comptes -->
+<div id="list-section">
+    <h2>Liste des Comptes</h2>
+    <table class="table table-striped">
+        <tr>
+            <th>RIB</th>
+            <th>Client</th>
+            <th>Solde</th>
+            <th>Edit</th>
+            <th>Delete</th>
+
+        </tr>
+        <tr th:each="compte : ${comptes}">
+            <td th:text="${compte.rib}" />
+            <td th:text="${compte.nomClient}" />
+            <td th:text="${compte.solde}" />
+            <td>
+                <a th:href="@{/comptes/edit/{rib}(rib=${compte.rib})}" class="btn btn-danger">Modifier</a>
+
+            </td>
+            <td>
+
+                <a th:href="@{/comptes/delete/{rib}(rib=${compte.rib})}" class="btn btn-danger">Supprimer</a>
+
+            </td>
+        </tr>
+    </table>
+</div>
+
+<script src="../js/bundle.min.js"></script>
+<script src="../js/student.js"></script>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script src="../js/sweetalert.min.js"></script>
+</body>
+</html>

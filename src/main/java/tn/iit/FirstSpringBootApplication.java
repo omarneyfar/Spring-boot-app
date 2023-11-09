@@ -22,7 +22,7 @@ public class FirstSpringBootApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println("test successed");
+		System.out.println("test passed");
 	}
 
 }
