@@ -1,10 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <title>Édition de Client</title>
 </head>
 <body>
+<div class="container">
+    <h1 class="my-4">Édition de Client</h1>
 
+    <form th:action="@{/clients/update/{cin}(cin=${client.cin})}" method="POST">
+        <div class="mb-3">
+            <label  class="form-label">CIN</label>
+            <p th:text="${client.cin}" class="form-control" readonly="readonly"></p>
+        </div>
+        <div class="mb-3">
+            <label for="nom" class="form-label">Nom</label>
+            <input type="text" id="nom" name="nom" th:value="${client.nom}" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label for="prenom" class="form-label">Prénom</label>
+            <input type="text" id="prenom" name="prenom" th:value="${client.prenom}" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-success">Enregistrer les modifications</button>
+        <a th:href="@{/clients}" class="btn btn-secondary">Annuler</a>
+    </form>
+</div>
+
+<script src="../js/bundle.min.js"></script>
+<script src="../js/student.js"></script>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script src="../js/sweetalert.min.js"></script>
 </body>
 </html>

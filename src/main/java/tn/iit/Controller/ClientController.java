@@ -14,7 +14,6 @@ import java.util.List;
 
 public class ClientController {
 
-/*
     private ClientService clientService;
 
     @Autowired
@@ -31,32 +30,43 @@ public class ClientController {
     }
 
 
-    @GetMapping("/edit/{w}")
-    public String showEditClientForm(@PathVariable Long id, Model model) {
-        Client client = clientService.getClientById(id);
+
+    @GetMapping("/edit/{cin}")
+    public String showEditClientForm(@PathVariable Long cin, Model model) {
+        Client client = clientService.getClientByCin(cin);
         if (client != null) {
             model.addAttribute("client", client);
-            return "editclient"; // Redirige vers la page d'édition de client.
+            return "editclient"; // Redirect to the client edit page.
         }
         return "redirect:/clients";
     }
 
-    @PostMapping("/update/{id}")
-    public String updateClient(@PathVariable Long id, @ModelAttribute("client") Client client) {
+    @PostMapping("/update/{cin}")
+    public String updateClient(@PathVariable Long cin, @ModelAttribute("client") Client client) {
         clientService.updateClient(client);
         return "redirect:/clients";
     }
 
-    @GetMapping("/delete/{id}")
-    public String deleteClient(@PathVariable Long id) {
-        clientService.deleteClient(id);
+    @GetMapping("/delete/{cin}")
+    public String deleteClient(@PathVariable Long cin) {
+        clientService.deleteClientByCin(cin);
         return "redirect:/clients";
     }
 
     @PostMapping("/save")
-    public String saveCompte(@ModelAttribute("client") Client client) {
-        clientService.createClient(client);
-        return "redirect:/clients";
+    public String saveClient(@ModelAttribute("client") Client client, Model model) {
+        Long cin = client.getCin();
+
+        // Check if a client with the same cin already exists
+        if (clientService.getClientByCin(cin) != null) {
+            model.addAttribute("error", "Client with the same CIN already exists");
+        } else {
+            clientService.createClient(client);
+        }
+
+        List<Client> clients = clientService.getAllClients();
+        model.addAttribute("clients", clients);
+        return "clients";
     }
 
     @GetMapping("/add")
@@ -64,6 +74,5 @@ public class ClientController {
         model.addAttribute("client", new Client());
         return "addClient"; // Redirige vers la page d'ajout de client.
     }
-*/
 
 }

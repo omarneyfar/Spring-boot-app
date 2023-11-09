@@ -26,8 +26,8 @@ public class ClientService {
     }
 
     // Méthode pour récupérer un compte par son rib
-    public Client getClientById(Long id) {
-        return clientRepository.findById(id).orElse(null);
+    public Client getClientByCin(Long cin) {
+        return clientRepository.findById(cin).orElse(null);
     }
 
     // Méthode pour créer un nouveau compte
@@ -41,7 +41,7 @@ public class ClientService {
     }
 
     // Méthode pour supprimer un compte par son rib
-    public void deleteClient(Long id) {
-        clientRepository.deleteById(id);
+    public void deleteClientByCin(Long cin) {
+        clientRepository.deleteById(cin);
     }
 }

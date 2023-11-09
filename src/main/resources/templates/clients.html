@@ -7,18 +7,22 @@
 <body>
 <h1>Gestion des Clients</h1>
 
-<!-- Section pour ajouter un compte -->
+<!-- Section pour ajouter un client -->
 <div id="add-section">
   <h2>Ajouter un Client</h2>
   <form th:action="@{/clients/save}" method="POST">
     <table>
       <tr>
-        <td>Client</td>
-        <td><input type="text" name="nomClient" /></td>
+        <td>CIN</td>
+        <td><input type="text" name="cin" /></td>
       </tr>
       <tr>
-        <td>Solde</td>
-        <td><input type="text" name="solde" /></td>
+        <td>Nom</td>
+        <td><input type="text" name="nom" /></td>
+      </tr>
+      <tr>
+        <td>Prénom</td>
+        <td><input type="text" name="prenom" /></td>
       </tr>
       <tr>
         <td></td>
@@ -28,30 +32,31 @@
   </form>
 </div>
 
-<!-- Section pour afficher la liste des comptes -->
+<!-- Section pour afficher la liste des clients -->
 <div id="list-section">
   <h2>Liste des Clients</h2>
+  <!-- Add error message section -->
+  <div th:if="${error}" class="alert alert-danger" role="alert">
+    <p th:text="${error}"></p>
+  </div>
+
   <table class="table table-striped">
     <tr>
-      <th>id</th>
+      <th>CIN</th>
       <th>Nom</th>
-      <th>Solde</th>
+      <th>Prénom</th>
       <th>Edit</th>
       <th>Delete</th>
-
     </tr>
-    <tr th:each="compte : ${clients}">
-      <td th:text="${client.id}" />
-      <td th:text="${client.nomClient}" />
-      <td th:text="${client.solde}" />
+    <tr th:each="client : ${clients}">
+      <td th:text="${client.cin}" />
+      <td th:text="${client.nom}" />
+      <td th:text="${client.prenom}" />
       <td>
-        <a th:href="@{/clients/edit/{id}(id=${client.id})}" class="btn btn-danger">Modifier</a>
-
+        <a th:href="@{/clients/edit/{cin}(cin=${client.cin})}" class="btn btn-danger">Modifier</a>
       </td>
       <td>
-
-        <a th:href="@{/clients/delete/{id}(id=${client.id})}" class="btn btn-danger">Supprimer</a>
-
+        <a th:href="@{/clients/delete/{cin}(cin=${client.cin})}" class="btn btn-danger">Supprimer</a>
       </td>
     </tr>
   </table>

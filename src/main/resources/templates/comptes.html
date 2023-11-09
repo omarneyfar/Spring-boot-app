@@ -14,7 +14,11 @@
         <table>
             <tr>
                 <td>Client</td>
-                <td><input type="text" name="nomClient" /></td>
+                <td>
+                    <select name="client" id="client">
+                        <option th:each="client : ${clients}" th:value="${client.cin}" th:text="${client.nom} + ' ' + ${client.prenom}"></option>
+                    </select>
+                </td>
             </tr>
             <tr>
                 <td>Solde</td>
@@ -42,7 +46,7 @@
         </tr>
         <tr th:each="compte : ${comptes}">
             <td th:text="${compte.rib}" />
-            <td th:text="${compte.nomClient}" />
+            <td th:text="${compte.client.getNom() }+ ' ' + ${compte.client.getPrenom()}" />
             <td th:text="${compte.solde}" />
             <td>
                 <a th:href="@{/comptes/edit/{rib}(rib=${compte.rib})}" class="btn btn-danger">Modifier</a>

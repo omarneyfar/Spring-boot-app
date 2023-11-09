@@ -20,7 +20,6 @@ public class Client implements Serializable /*obligatoire selon le JPa*/ {
 	private static final long serialVersionUID = 1L;
 	@Include//equals and hashcode fonctionne à base de rib pk
 	@Id //pk
-	@GeneratedValue(strategy = GenerationType.IDENTITY)//auto-increment
 	private Long cin;
 	private String nom;
 	private String prenom;

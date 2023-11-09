@@ -10,9 +10,14 @@
 
     <form th:action="@{/comptes/update/{rib}(rib=${compte.rib})}" method="POST">
         <div class="mb-3">
-            <label for="nomClient" class="form-label">Client</label>
-            <input type="text" id="nomClient" name="nomClient" th:value="${compte.nomClient}" class="form-control" />
+            <label for="client" class="form-label">Client</label>
+            <select name="client" id="client">
+                <option th:each="client : ${clients}" th:value="${client.cin}"
+                        th:text="${client.nom} + ' ' + ${client.prenom}"
+                        th:selected="${client.cin == compte.client.cin}"></option>
+            </select>
         </div>
+
         <div class="mb-3">
             <label for="solde" class="form-label">Solde</label>
             <input type="text" id="solde" name="solde" th:value="${compte.solde}" class="form-control" />
