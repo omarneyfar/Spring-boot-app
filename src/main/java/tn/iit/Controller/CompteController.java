@@ -8,8 +8,8 @@ import tn.iit.service.CompteService;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/comptes")
+@Controller
+@RequestMapping("/comptes")
 public class CompteController {
 
     private CompteService compteService;
@@ -20,8 +20,11 @@ public class CompteController {
     }
 
     @GetMapping
-    public List<Compte> getAllComptes() {
-        return compteService.getAllComptes();
+    public String showComptesPage(Model model) {
+        List<Compte> comptes = compteService.getAllComptes();
+        model.addAttribute("comptes", comptes);
+        model.addAttribute("compte", new Compte());
+        return "comptes";
     }
 
 
