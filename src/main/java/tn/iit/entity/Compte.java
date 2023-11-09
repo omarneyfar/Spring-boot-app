@@ -4,13 +4,7 @@ import java.io.Serializable;
 
 import java.io.Serializable;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.EqualsAndHashCode.Include;
@@ -27,16 +21,17 @@ import lombok.ToString;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 @Entity
-@Table(name="t_compte")//pour changer le nom de tableau dans mysql(recommandé)
+
 public class Compte implements Serializable /*obligatoire selon le JPa*/ {
 	private static final long serialVersionUID = 1L;
 	@Include//equals and hashcode fonctionne à base de rib pk
 	@Id //pk
 	@GeneratedValue(strategy = GenerationType.IDENTITY)//auto-increment
 	private Long rib;
-	@Column(name="client")//changer le nom du colonne dans le tableau
-	private String nomClient;
 	private float solde;//BigDecimal
+	@ManyToOne
+	@JoinColumn(name = "client_cin")
+	private Client client;
 	//@Transient//attribut mais n'est pas sauvgarder dans la base (generalement dans les champs de calcul)
 	//private int jarraya;
 

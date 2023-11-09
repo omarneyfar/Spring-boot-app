@@ -5,6 +5,7 @@ import lombok.*;
 import lombok.EqualsAndHashCode.Include;
 
 import java.io.Serializable;
+import java.util.List;
 
 
 @Getter
@@ -14,16 +15,18 @@ import java.io.Serializable;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 @Entity
-@Table(name="t_client")//pour changer le nom de tableau dans mysql(recommandé)
+
 public class Client implements Serializable /*obligatoire selon le JPa*/ {
 	private static final long serialVersionUID = 1L;
 	@Include//equals and hashcode fonctionne à base de rib pk
 	@Id //pk
 	@GeneratedValue(strategy = GenerationType.IDENTITY)//auto-increment
-	private Long id;
-	@Column(name="compte")//changer le nom du colonne dans le tableau
-	private String nomClient;
-	private float solde;//BigDecimal
+	private Long cin;
+	private String nom;
+	private String prenom;
+	@OneToMany(mappedBy = "client")
+	private List<Compte> compte;
+	//BigDecimal
 	//@Transient//attribut mais n'est pas sauvgarder dans la base (generalement dans les champs de calcul)
 	//private int jarraya;
 

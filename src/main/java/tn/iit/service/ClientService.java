@@ -21,22 +21,22 @@ public class ClientService {
     }
 
     // Méthode pour récupérer tous les comptes
-    public List<Compte> getAllClients() {
+    public List<Client> getAllClients() {
         return clientRepository.findAll();
     }
 
     // Méthode pour récupérer un compte par son rib
-    public Compte getClientById(Long id) {
+    public Client getClientById(Long id) {
         return clientRepository.findById(id).orElse(null);
     }
 
     // Méthode pour créer un nouveau compte
-    public Compte createClient(Client client) {
+    public Client createClient(Client client) {
         return clientRepository.save(client);
     }
 
     // Méthode pour mettre à jour un compte existant
-    public Compte updateClient(Client client) {
+    public Client updateClient(Client client) {
         return clientRepository.save(client);
     }
 

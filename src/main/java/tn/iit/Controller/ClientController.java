@@ -14,6 +14,7 @@ import java.util.List;
 
 public class ClientController {
 
+/*
     private ClientService clientService;
 
     @Autowired
@@ -30,9 +31,9 @@ public class ClientController {
     }
 
 
-    @GetMapping("/edit/{id}")
+    @GetMapping("/edit/{w}")
     public String showEditClientForm(@PathVariable Long id, Model model) {
-        Client client = clientService.getClientById(rib);
+        Client client = clientService.getClientById(id);
         if (client != null) {
             model.addAttribute("client", client);
             return "editclient"; // Redirige vers la page d'édition de client.
@@ -42,7 +43,6 @@ public class ClientController {
 
     @PostMapping("/update/{id}")
     public String updateClient(@PathVariable Long id, @ModelAttribute("client") Client client) {
-        client.setId(id);
         clientService.updateClient(client);
         return "redirect:/clients";
     }
@@ -61,8 +61,9 @@ public class ClientController {
 
     @GetMapping("/add")
     public String showAddClientForm(Model model) {
-        model.addAttribute("client", new client());
+        model.addAttribute("client", new Client());
         return "addClient"; // Redirige vers la page d'ajout de client.
     }
+*/
 
 }
