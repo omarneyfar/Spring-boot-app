@@ -2,63 +2,96 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     <title>Gestion des Comptes</title>
 </head>
 <body>
-<h1>Gestion des Comptes</h1>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="/">Your Logo</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/clients}">Clients</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/comptes}">Comptes</a>
+                    </li>
+                    <!-- Add more navigation links as needed -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="container">
+    <h1>Gestion des Comptes</h1>
+</div>
 
 <!-- Section pour ajouter un compte -->
 <div id="add-section">
-    <h2>Ajouter un Compte</h2>
-    <form th:action="@{/comptes/save}" method="POST">
-        <table>
-            <tr>
-                <td>Client</td>
-                <td>
-                    <select name="client" id="client">
-                        <option th:each="client : ${clients}" th:value="${client.cin}" th:text="${client.nom} + ' ' + ${client.prenom}"></option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>Solde</td>
-                <td><input type="text" name="solde" /></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="submit" value="Enregistrer" class="btn btn-primary" /></td>
-            </tr>
-        </table>
-    </form>
+    <div class="container">
+        <h2>Ajouter un Compte</h2>
+
+        <form th:action="@{/comptes/save}" method="POST">
+            <table>
+                <tr>
+                    <td>Client</td>
+                    <td>
+                        <select name="client" id="client">
+                            <option th:each="client : ${clients}" th:value="${client.cin}" th:text="${client.nom} + ' ' + ${client.prenom}"></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Solde</td>
+                    <td><input type="text" name="solde" /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Enregistrer" class="btn btn-primary" /></td>
+                </tr>
+            </table>
+        </form>
+    </div>
 </div>
 
 <!-- Section pour afficher la liste des comptes -->
 <div id="list-section">
-    <h2>Liste des Comptes</h2>
-    <table class="table table-striped">
-        <tr>
-            <th>RIB</th>
-            <th>Client</th>
-            <th>Solde</th>
-            <th>Edit</th>
-            <th>Delete</th>
+    <div class="container">
+        <h2>Liste des Comptes</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>RIB</th>
+                <th>Client</th>
+                <th>Solde</th>
+                <th>Edit</th>
+                <th>Delete</th>
 
-        </tr>
-        <tr th:each="compte : ${comptes}">
-            <td th:text="${compte.rib}" />
-            <td th:text="${compte.client.getNom() }+ ' ' + ${compte.client.getPrenom()}" />
-            <td th:text="${compte.solde}" />
-            <td>
-                <a th:href="@{/comptes/edit/{rib}(rib=${compte.rib})}" class="btn btn-danger">Modifier</a>
+            </tr>
+            <tr th:each="compte : ${comptes}">
+                <td th:text="${compte.rib}" />
+                <td th:text="${compte.client.getNom() }+ ' ' + ${compte.client.getPrenom()}" />
+                <td th:text="${compte.solde}" />
+                <td>
+                    <a th:href="@{/comptes/edit/{rib}(rib=${compte.rib})}" class="btn btn-danger">Modifier</a>
 
-            </td>
-            <td>
+                </td>
+                <td>
 
-                <a th:href="@{/comptes/delete/{rib}(rib=${compte.rib})}" class="btn btn-danger">Supprimer</a>
+                    <a th:href="@{/comptes/delete/{rib}(rib=${compte.rib})}" class="btn btn-danger">Supprimer</a>
 
-            </td>
-        </tr>
-    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>
 
 <script src="../js/bundle.min.js"></script>
